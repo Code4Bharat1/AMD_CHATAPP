@@ -6,25 +6,34 @@ export const ExpertSessionMiddleware = async (req, res, next) => {
 
   const db = getDB();
   const ExpertToExpertSessionCollection = db.collection("experttoexpertsessions");
+  
   try {
-
-    if (req.user) {
-      console.log("❌ Error in session middleware this is expert-to-expert chat");
-      return res.status(401).json({ message: "user not allowed this is expert to expert chat" });
+    // Verify this is an expert request
+    if (!req.expert) {
+      console.log("❌ Error: Only experts can access expert-to-expert sessions");
+      return res.status(403).json({ message: "Only experts can access expert-to-expert sessions" });
     }
-    if (req.expert) {
-      const sessions = await ExpertToExpertSessionCollection
-        .find({"$and" : [{ expertId: new ObjectId(req.expert._id) } , {status : "confirmed"}]})
-        .toArray();
+    // Check if current expert is either the consulting expert or the consulted expert
+    const session = await ExpertToExpertSessionCollection.findOne({
+      status: "confirmed",
+      $or: [
+        { consultingExpertID: new ObjectId(req.expert._id) }, // They're the one giving consultation
+        { expertId: new ObjectId(req.expert._id) }            // They're the one receiving consultation
+      ]
+    });
 
-      req.session = sessions;
-      console.log(" expert session middleware is passed")
-      return next();
+    if (!session) {
+      return res.status(403).json({ 
+        message: "Not authorized to access this session or session not found" 
+      });
     }
 
-    console.error("❌ user/expert not found in session validation");
+    // Attach session to request and proceed
+    req.session = session;
+    console.log("✅ expert session middleware passed");
+    next();
   } catch (error) {
-    console.error("❌ Error in session middleware:", error.message);
+    console.error("❌ Error in expert session middleware:", error.message);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };

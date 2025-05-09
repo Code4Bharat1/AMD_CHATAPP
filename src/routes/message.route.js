@@ -1,29 +1,60 @@
-import express from "express"
+import express from "express";
 import { protectRoute } from "../middleware/auth.middleware.js";
 import { sessionMiddleware } from "../middleware/sessionvalidation.js";
-import { ExpertSessionMiddleware } from "../middleware/expertSessionValidation.js";
-import { getExpertsForSidebar , getExpertMessages, sendExpertMessage , deleteExpertMessage , deleteAllExpertMessages , editExpertMessage } from "../controller/expert.message.controller.js";
-import { getUserForSidebar , getMessages , sendMessage , deleteOneMessage , deleteAllMessage ,editMessage , getLogginUser } from "../controller/message.controller.js";
+import { 
+  getUserForSidebar, 
+  getMessages, 
+  sendMessage, 
+  deleteOneMessage, 
+  deleteAllMessage, 
+  editMessage, 
+  getLogginUser 
+} from "../controller/message.controller.js";
+import { 
+  uploadMiddleware, 
+  uploadFile, 
+  getFileInfo, 
+  downloadFile, 
+  deleteFile, 
+  getConversationFiles 
+} from "../controller/file.controller.js";
+import {
+  voiceUploadMiddleware,
+  uploadVoiceMessage,
+  getVoiceInfo,
+  streamVoiceMessage,
+  downloadVoiceMessage,
+  deleteVoiceMessage,
+  getConversationVoiceMessages,
+  handleMulterError
+} from "../controller/voice.controller.js";
 
 const route = express.Router();
 
+// User authentication
+route.get("/logginuser", protectRoute, sessionMiddleware, getLogginUser);
 
-route.get("/logginuser",protectRoute , sessionMiddleware , getLogginUser)
+// ===== USER TO EXPERT CHAT =====
+// Basic messaging
+route.get("/users", protectRoute, sessionMiddleware, getUserForSidebar);
+route.get("/get/:id", protectRoute, sessionMiddleware, getMessages);
+route.post("/send/:id", protectRoute, sessionMiddleware, sendMessage);
+route.delete("/delete", protectRoute, sessionMiddleware, deleteOneMessage);
+route.delete("/deleteallmessage", protectRoute, sessionMiddleware, deleteAllMessage);
+route.put('/edit', protectRoute, sessionMiddleware, editMessage);
 
-//user to user chat
-route.get("/users",protectRoute, sessionMiddleware , getUserForSidebar) // first checking login user then session then giving the user data
-route.get("/:id", protectRoute , sessionMiddleware , getMessages) // same and  geting the message
-route.post("/send/:id",protectRoute, sessionMiddleware , sendMessage) // same and sending message
-route.delete("/delete" ,protectRoute ,sessionMiddleware, deleteOneMessage) // same but to delete selected message 
-route.delete("/deleteallmessage",protectRoute ,sessionMiddleware, deleteAllMessage) // same but delete all message 
-route.put('/edit' ,protectRoute ,sessionMiddleware, editMessage ) // same but edit selected message
+// File operations - User to EXPERT
+route.post("/upload/:id", protectRoute, sessionMiddleware, uploadMiddleware, uploadFile);
+route.get("/files/info/:fileId", protectRoute, sessionMiddleware, getFileInfo);
+route.get("/files/download/:fileId", protectRoute, sessionMiddleware, downloadFile);
+route.delete("/files/delete", protectRoute, sessionMiddleware, deleteFile);
+route.get("/files/conversation/:id", protectRoute, sessionMiddleware, getConversationFiles);
 
-//expert to expert chat
-route.get("/expert",protectRoute, ExpertSessionMiddleware , getExpertsForSidebar) // first checking login user then session then giving the user data
-route.get("/expert/:id", protectRoute , ExpertSessionMiddleware , getExpertMessages) // same and  geting the message
-route.post("/expert/send/:id",protectRoute, ExpertSessionMiddleware , sendExpertMessage) // same and sending message
-route.delete("/expert/delete" ,protectRoute ,ExpertSessionMiddleware, deleteExpertMessage) // same but to delete selected message 
-route.delete("/expert/deleteallmessage",protectRoute ,ExpertSessionMiddleware, deleteAllExpertMessages) // same but delete all message 
-route.put('/expert/edit' ,protectRoute ,ExpertSessionMiddleware, editExpertMessage ) // same but edit selected message
-
+// Voice message operations - User to EXPERT
+route.post("/voice/:id", protectRoute, sessionMiddleware, voiceUploadMiddleware, handleMulterError, uploadVoiceMessage);
+route.get("/voice/info/:voiceId", protectRoute, sessionMiddleware, getVoiceInfo);
+route.get("/voice/stream/:voiceId",protectRoute,sessionMiddleware, streamVoiceMessage);
+route.get("/voice/download/:voiceId", protectRoute, sessionMiddleware, downloadVoiceMessage);
+route.delete("/voice/delete", protectRoute, sessionMiddleware, deleteVoiceMessage);
+route.get("/voice/conversation/:id", protectRoute, sessionMiddleware, getConversationVoiceMessages);
 export default route;

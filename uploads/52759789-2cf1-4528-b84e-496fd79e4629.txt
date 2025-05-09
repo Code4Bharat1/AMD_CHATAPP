@@ -1,0 +1,2633 @@
+GURU KASHI UNIVERSITY
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+B. 
+Voc.in 
+
+ 
+Artificial Intelligence & Ma chine Learning 
+ 
+ 
+Session:      2024
+-
+25
+ 
+ 
+Department of Computer Science & Engineering
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+ 
+ 
+ 
+ 
+Programme 
+Structure
+ 
+Semester: I
+ 
+Course 
+Code
+ 
+Course Title
+ 
+Type of 
+Course
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+BMA101
+ 
+Programming for 
+Problem Solving
+ 
+Skill Based 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA102
+ 
+Programming for 
+Problem Solving Lab
+ 
+Compulsory 
+Foundation
+ 
+0
+ 
+0
+ 
+4
+ 
+2
+ 
+BMA103
+ 
+Mathematics
+-
+I
+ 
+Compulsory 
+Foundation
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA104
+ 
+Communication 
+Skills
+ 
+Skill Based
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA105
+ 
+Communication 
+Skills
+ 
+Lab
+ 
+Compulsory 
+Foundation
+ 
+0
+ 
+0
+ 
+2
+ 
+1
+ 
+BMA106
+ 
+Basics of Artificial 
+I ntelligence and 
+Machine Learning
+ 
+Skill Based 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA107
+ 
+Fundamental of 
+Computer and 
+I nformation 
+Technology Lab
+ 
+Skill Based 
+ 
+0
+ 
+0
+ 
+2
+ 
+1
+ 
+Total
+ 
+16
+ 
+ 
+0
+8
+ 
+20
+ 
+ 
+ 
+ 
+ 
+
+
+ 
+ 
+ 
+ 
+Semester: II
+ 
+Course Code
+ 
+Course Title
+ 
+ 
+Type of Course 
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+BMA201
+ 
+Mathematics
+-
+II
+ 
+Compulsory 
+Foundation
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA202
+ 
+Object Oriented 
+Programming Using 
+C++
+ 
+Skill based
+ 
+3
+ 
+0
+ 
+0
+ 
+3
+ 
+BMA203
+ 
+Web Technology
+ 
+Skill based
+ 
+3
+ 
+0
+ 
+0
+ 
+3
+ 
+BMA204
+ 
+Data Structure & 
+Algorithms
+ 
+Compulsory 
+Foundation
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA205
+ 
+Digital Electronics
+ 
+Skill based
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA206
+ 
+Web Technology
+ 
+Lab
+ 
+Skill based
+ 
+0
+ 
+0
+ 
+2
+ 
+1
+ 
+BMA207
+ 
+Object Oriented 
+Programming Using 
+C++
+ 
+Lab
+ 
+Skill 
+based
+ 
+0
+ 
+0
+ 
+2
+ 
+1
+ 
+V alue Added Course
+ 
+BMA208
+ 
+Environmental 
+Science
+ 
+ 
+VAC
+ 
+ 
+2
+ 
+ 
+0
+ 
+ 
+ 
+0
+ 
+ 
+ 
+2
+ 
+ 
+Total
+ 
+20
+ 
+0
+ 
+04
+ 
+22
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+Semester: III
+ 
+Course Code
+ 
+Course Title
+ 
+Type of Course 
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+BMA301
+ 
+Discrete Mathematics
+ 
+Core 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA302
+ 
+Operating System
+ 
+Core 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA303
+ 
+Design & Analysis of 
+Algorithms
+ 
+Core 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA304
+ 
+Computer Organization & 
+Architecture
+ 
+Core
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA305
+ 
+Operating 
+System Lab
+ 
+Skill based
+ 
+0
+ 
+0
+ 
+4
+ 
+2
+ 
+BMA30
+6
+ 
+Design & Analysis of 
+Algorithms Lab
+ 
+Skill based
+ 
+0
+ 
+0
+ 
+4
+ 
+2
+ 
+Open Elective 
+
+I
+ 
+xxx
+ 
+ 
+Open
+ 
+Elective 
+Course
+ 
+2
+ 
+0
+ 
+0
+ 
+2
+ 
+Discipline 
+Elective
+-
+I(Any one of the following)
+ 
+BMA307
+ 
+Multimedia and Applications
+ 
+Discipline Elective
+-
+I
+ 
+3
+ 
+0
+ 
+0
+ 
+3
+ 
+BMA308
+ 
+Cloud Computing
+ 
+Total
+ 
+21
+ 
+0
+ 
+10
+ 
+25
+ 
+Open Elective 
+
+ 
+I(Open Elective Courses for other Departments)
+ 
+BMA309
+ 
+I ntroduction to Artificial 
+I ntelligence & Machine 
+Learning
+ 
+Open Elective 
+Course
+ 
+2
+ 
+0
+ 
+0
+ 
+2
+ 
+
+
+ 
+ 
+ 
+ 
+Semester: IV
+ 
+Course Code
+ 
+Course Title
+ 
+ 
+Type of Course 
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+BMA401
+ 
+I ntroduction to Machine 
+Learning  with Python 
+ 
+Core 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA402
+ 
+Java Programming   
+ 
+Core 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA403
+ 
+Relational Database 
+Management System
+ 
+Core 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA404
+ 
+I ntroduction to  Robotics
+ 
+Core 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA405
+ 
+Relational Database 
+Management System Lab
+ 
+Skill based
+ 
+0
+ 
+0
+ 
+2
+ 
+1
+ 
+BMA406
+ 
+I ntroduction to Machine 
+Learning  with Python 
+Lab 
+ 
+Skill based
+ 
+0
+ 
+0
+ 
+4
+ 
+2
+ 
+BMA407
+ 
+Java Programming Lab  
+ 
+Skill based
+ 
+0
+ 
+0
+ 
+2
+ 
+1
+ 
+B
+MA
+499
+ 
+xxx
+ 
+   
+MOOC
+ 
+0
+ 
+0
+ 
+0
+ 
+3
+ 
+Discipline 
+Elective
+-
+II(Any one of the
+ 
+ 
+following)
+ 
+BMA408
+ 
+Data ware housing & 
+Data Mining
+ 
+Discipline 
+Elective
+-
+II
+ 
+3
+ 
+0
+ 
+0
+ 
+3
+ 
+BMA409
+ 
+Big Data
+ 
+                                                       
+Total
+ 
+18
+ 
+0
+ 
+8
+ 
+26
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+Semester: V
+ 
+Course Code
+ 
+Course Title
+ 
+Type of Course
+ 
+L
+ 
+T
+ 
+P
+ 
+Credit
+s
+ 
+BMA501
+ 
+Formal Language & 
+Automata Theory
+ 
+Core 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA502
+ 
+Computer Networks
+ 
+Core
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA503
+ 
+Deep learning  
+ 
+Core
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA504
+ 
+Deep
+ 
+Learning Lab 
+ 
+ 
+Skill based
+ 
+0
+ 
+0
+ 
+4
+ 
+2
+ 
+BMA505
+ 
+Project
+-
+1
+ 
+Skill based 
+ 
+0
+ 
+0
+ 
+4
+ 
+2
+ 
+BMA506
+ 
+Optimization 
+Techniques in Machi ne
+ 
+Lea
+r
+ning
+ 
+Core 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+BMA599
+ 
+xxx
+ 
+MOOC
+ 
+0
+ 
+0
+ 
+0
+ 
+3
+ 
+Elective
+-
+III(Any one of the
+ 
+ 
+following)
+ 
+BMA507
+ 
+Soft Computing
+ 
+Discipline 
+Elective
+-
+II
+ 
+3
+ 
+0
+ 
+0
+ 
+3
+ 
+BMA508
+ 
+Speech and Language 
+Processing
+ 
+Total
+ 
+19
+ 
+0
+ 
+8
+ 
+26
+ 
+
+
+ 
+ 
+ 
+ 
+ 
+                                                          
+Semester: V I
+ 
+Course Code
+ 
+Course 
+Title
+ 
+Type of Course 
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+BMA601
+ 
+Advanced Machine 
+Learning
+ 
+Core
+ 
+3
+ 
+0
+ 
+0
+ 
+3
+ 
+BMA6
+02
+ 
+Network Security with 
+AI
+ 
+Core
+ 
+3
+ 
+0
+ 
+0
+ 
+3
+ 
+BMA6
+03
+ 
+Data and Visual 
+analytics in AI
+ 
+Core
+ 
+3
+ 
+0
+ 
+0
+ 
+3
+ 
+BMA6
+04
+ 
+Project
+-
+II
+ 
+Skill based
+ 
+0
+ 
+0
+ 
+4
+ 
+2
+ 
+BMA6
+06
+ 
+Digital Signal 
+processing 
+ 
+Core
+ 
+3
+ 
+0
+ 
+0
+ 
+3
+ 
+BMA
+ 
+XXX
+ 
+MOOC
+ 
+0
+ 
+0
+ 
+0
+ 
+3
+ 
+Total
+ 
+1
+6
+ 
+0
+ 
+8
+ 
+20
+ 
+Elective
+-
+IV (Any one of the following)
+ 
+BMA
+ 
+607
+ 
+Deep  Learn ing
+ 
+ 
+ 
+Discipline 
+Elective
+-
+IV
+ 
+ 
+ 
+3
+ 
+ 
+ 
+ 
+0
+ 
+ 
+ 
+0
+ 
+ 
+ 
+3
+ 
+BMA
+ 
+608
+ 
+Block Chain Designing
+ 
+ 
+V alue Added Course
+ 
+ 
+BMA
+ 
+609
+ 
+Personality 
+Development 
+programme
+ 
+VAC
+ 
+2
+ 
+0
+ 
+0
+ 
+2
+ 
+Total
+ 
+21
+ 
+0
+ 
+8
+ 
+22
+ 
+
+
+Evalu ation CriteriaforTh eoryCourses
+ 
+A.
+ 
+Continuous Assessment: [25 Marks]
+ 
+CA1
+-
+Surprise Test ( Two best out of Three)  
+-
+ 
+(10 Marks) 
+ 
+CA2
+-
+Assignment(s) (10 Marks)
+ 
+CA3
+-
+Term Paper/Qu iz/Presentations (05 Marks)
+ 
+B.
+ 
+Attendance: [05 
+marks]
+ 
+C.
+ 
+Mid Semester Test: [ 30 Marks] 
+ 
+D.
+ 
+End
+-
+Term Exam: [40  Marks]
+ 
+       
+Evaluation Criteria for Practical Courses:
+ 
+Performance of each practical
+-
+(10 Marks), Report
+-
+ 
+ 
+(5 Marks)
+ 
+ 
+ 
+Practical Viva 
+
+ 
+(5 Marks)
+ 
+         
+Total 
+-
+ 
+ 
+(20 Marks) (Each Practical)
+ 
+ 
+ 
+ 
+
+
+Semester: I
+ 
+Course Title: PROGRAMMING FOR PR OBLEM SOLV ING
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+Course Code:
+ 
+BMA1 01
+ 
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Total Hours: 
+60
+ 
+Learning Outcomes: 
+After completion of this course, the learner will be able to:
+ 
+1.
+ 
+Design the algorithms to write programs.
+ 
+2.
+ 
+I llustrate arrays, pointers and structures to formulate algorithms and programs
+ 
+3.
+ 
+Apply programming to solve simple num erical method problems, namely rot finding  
+of function, differentiation of function and simple integration
+ 
+4.
+ 
+I mplement conditional branching,
+ 
+iteration and recursion.
+ 
+Course Content
+ 
+ 
+UNIT I   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+18
+ 
+Hours
+ 
+Introduction to Programming: 
+I ntroduction to components of a computer system 
+(disks, memory, processor, where a program is stored and executed, operating system, 
+compilers etc.) 
+-
+ 
+I
+dea of Algorithm: steps to solve logical and numerical problems.  
+Representation of Al gorithm: Flowchart/Pseudo code with ex amples. From algorit hms  
+to programs; source code, variables (with  data types) variable s and memory Locat ions,  
+Syntax and Logical Erro
+rs in compilation, obj
+ 
+ect and executable code
+-
+ 
+ 
+UNIT II
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+      
+18
+ 
+Hours
+ 
+Arithmeticex pressionsandprecedence : 
+ConditionalBranchingandLoops
+ 
+Writingand 
+evaluation of conditionals and consequent branching 
+ 
+I teration and loops 
+ 
+Arrays: 
+Arrays (1
+-
+D, 2
+-
+D), Character arrays and Strings
+ 
+BasicAlgorithms:
+ 
+Searching,BasicSortingAlgorithms(Bubble,I nsertionandSelection), 
+Finding roots of Equations, notion of order of complexity through example programs (no  
+formal definition requirement.
+ 
+UNIT III
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+1
+0
+ 
+Hours
+ 
+Function:
+ 
+Functions (including using built in libraries ), Parameter passing in  
+functions, call by value, passing arrays to functions: idea of call by reference.
+ 
+Recursion: 
+Recursion as a different wayof solving problems.Example program
+s, such 
+asFindingFactorial,Fibonacciseries,Ackermanfunctionetc.QuicksortorMergesort.
+ 
+UNIT IV
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+1
+4
+ 
+Hours
+ 
+Structure: 
+Structures, Defining structures and Array of Structures
+ 
+Pointers:
+ 
+I dea of pointers, defining pointers, Use of Pointers in self
+-
+referential 
+structures, notion of linked list (no implementation)
+ 
+File handling (only if time is available, otherwise should be done as part of the lab.
+ 
+ 
+
+
+ 
+Transaction Modes
+ 
+Lecture, Seminar, 
+e
+-
+Team Te aching, e
+-
+Tutoring, Dialogue,  Peer Group Discu ssion,  
+Mobile Teaching, Sel f
+-
+Learning, Collaborative Learning and Cooperative Learning
+ 
+Suggested Readings
+ 
+
+ 
+Byron Go ttf ried, Sch au m's (1995), Ou tl in e of  Programmin g wit h C, McGr a w
+-
+H ill.
+ 
+
+ 
+E. B al agurus wa my 
+( 2005) Progr ammin g in ANS I C, T ata McGr a w
+-
+H ill.
+ 
+ 
+ 
+ 
+ 
+
+
+Course Title:   PROGRAMMING FOR P ROBLEM SOLV ING LAB
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+Course Code:
+ 
+BMA1 02
+  
+ 
+0
+ 
+0
+ 
+4
+ 
+2
+ 
+     
+Total Hours: 
+30
+ 
+ 
+Learning Outcomes: 
+After completion of this course, the learner will be able to:
+ 
+1.
+ 
+Create read and write to and from simple text files.
+ 
+2.
+ 
+I dentify and correct logical errors encountered at run time
+ 
+3.
+ 
+Apply programming to solve simple numerical method problems, namely rot finding 
+of function, differentiation of function and simple integration
+.
+ 
+4.
+ 
+Represent data in arrays, strings and structures and manipulate them through a 
+program
+ 
+Course Content
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1.
+ 
+Problem solving using computers
+ 
+2.
+ 
+Familiarization with programming Environment
+ 
+3.
+ 
+Variable types and type conversions
+ 
+4.
+ 
+Simple computational problems 
+using arithmetic expressions
+ 
+5.
+ 
+Branching and logical expressions
+ 
+6.
+ 
+Problems involving if
+-
+then
+-
+else structures
+ 
+7.
+ 
+Loops, while and for loops
+ 
+8.
+ 
+I terative problems e.g., sum of series
+ 
+9.
+ 
+1D Arrays: searching, sorting
+ 
+10.
+ 
+1DArray manipulation
+ 
+11.
+ 
+2D arrays and Strings, memory str
+ucture
+ 
+12.
+ 
+Matrix problems, String operations
+ 
+13.
+ 
+Functions, call by value
+ 
+14.
+ 
+Simple functions
+ 
+15.
+ 
+Numerical methods (Root finding, numerical differentiation, numerical integration)
+ 
+16.
+ 
+ 
+Numerical methods problems
+ 
+17.
+ 
+Recursion, structure of recursive calls
+ 
+18.
+ 
+Recursive functions
+ 
+19.
+ 
+Pointers, structures and dynamic memory allocation 
+ 
+20.
+ 
+Pointers and structures
+ 
+21.
+ 
+File handling
+ 
+22.
+ 
+File operations
+ 
+Suggested Readings
+ 
+
+ 
+Byron Go ttf ried, Sch au m's (1995), Ou tl in e of  Programmin g wit h C, McGr a w
+-
+H ill
+ 
+
+ 
+E. B al agurus wa my ( 2005) Progr ammin g in ANS I C, T ata 
+McGr a w
+-
+H ill.
+ 
+ 
+
+
+ 
+ 
+Course Title: MATH EMATICS
+-
+I                              
+ 
+Course code:
+ 
+BMA1 03
+ 
+ 
+ 
+Total Hours: 60
+ 
+Learning Outcomes: 
+After completion of this course, the learner will be able to:
+ 
+1.
+ 
+Apply differential and integral calculus to notions of curvature and to improper 
+integrals. Apart from some other applications they will have a basic 
+understanding of Beta and Gamma functions. 
+ 
+2.
+ 
+ 
+ 
+of analysis to 
+Engineering problems.
+ 
+3.
+ 
+I llustrate the Tool of power series and Fourier series for learning advanced 
+Engineering Mathematics. 
+ 
+4.
+ 
+Use of functions of several variables that is essential in most branches of 
+engineering and tools of matrices and l
+inear algebra in a comprehensive manner.   
+ 
+Course Content
+ 
+UNIT I
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+20
+ 
+Hours
+ 
+Calculus:
+ 
+Evaluates and involutes; Evaluation of definite and improper integrals; 
+Beta and Gamma functions and their properties; Applications of definite integrals to 
+evaluate surface areas and volumes of revolutions.   
+ 
+
+
+ 
+Advanced Calculus: 
+Differentiation: Limit continuit
+y a nd partial derivati ves, 
+directional derivatives, total derivative; Tangent plane an d normal line; Maxima, 
+minima and saddle points; Method of Lagrange multipliers; Gradient, curl and 
+divergence.
+ 
+I ntegration: Multiple I ntegration: double and triple integ
+rals (Cartesian and polar), 
+change of order of integration in double integrals, Change of variables (Cartesian to 
+polar), Applications: areas and volumes  by (double integrat ion) Center of mass  and 
+Gravity (constant and variable densities). Theorems of  Gree
+n, Gauss and St okes,  
+orthogonal curvilinear coordinates, Simple applications involving cubes, sphere an d  
+rectangular parallelepipeds.
+ 
+UNIT II
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+1
+0
+ 
+Hours
+ 
+Trigonometry: 
+Hyperbolic and circular functions, logarithms of complex number 
+resolving rea
+
+ 
+Theory of equations
+: Relation between roots and coefficients, reciprocal Equations,  
+transformation of equations and diminishing the roots.
+ 
+ 
+ 
+
+
+ 
+UNIT III
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+15 Hours
+ 
+Sequences and ser ies: 
+Convergence of  sequence and serie s, tests for converg ence; 
+Power series, Taylor's series, series for exponential, trigonometric and logarithm  
+
+ 
+UNIT IV
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+15 Hours
+ 
+Algebra: 
+Vector Space, linear dependence of vectors, basis, dimension; Linear 
+transformations (maps), range and kernel of a linear map, rank and nullity, I nverse of 
+a linear transformation, rank
+-
+ 
+nullity theorem, composition of linea
+r maps, Matrix 
+associated with a linear map. 
+ 
+Eigen values, eigenvectors, symmetric, skew
+-
+symmetric, and orthogonal Matrices, 
+Eigen bases, Diagonalization; I nner product spaces, Gram
+-
+Schmidt orthogonalization.   
+ 
+ 
+Transaction Modes
+ 
+Lecture, Seminar, e
+-
+Team
+ 
+Te aching, e
+-
+Tutoring, Dialogue,  Peer Group Discu ssion,  
+Mobile Teaching, Sel f
+-
+Learning, Collaborative Learning and Cooperative Learning
+ 
+Suggested Readings
+ 
+
+ 
+T ho mas, G. B. (1992). C alculus and an al ytic geo me tr y.
+ 
+M as s achuse tts Ins titu te of  
+T echnology, 
+M ass ach use tts,USA,Add ison
+-
+WesleyPubl ish ingC o mp an y,ISBN:0
+-
+201
+-
+60700
+-
+X.
+ 
+
+ 
+UN IT , I. 16MA101  ENG INEER ING M AT HEMAT ICS
+-
+I LT PC.
+ 
+SNS COLLEGE OF  
+T ECHNOLOGY,
+ 
+7, 19.
+ 
+
+ 
+B al i, N. P., & Goyal, M. (2010).
+ 
+A T ex tbook of  Engineer ing M athe matics (PT U, 
+J al andh ar) Se m
+-
+III/ I
+V. L ax mi publ ic ation s.
+ 
+
+ 
+ 
+T ata McGr a w H ill Co. L td., 11 th  Rep r in t, Ne w Delh i, 20 10.
+ 
+DEPART MENT  OF  
+INST RUMENT AT ION ENG INEER ING ANNA  UN IVERS IT Y, CHENNA I, 24.
+ 
+ 
+ 
+
+
+Course Title:   
+Communication Skills
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+Course Code: 
+BMA1 04
+  
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+Total Hours: 45
+ 
+Learning Outcomes: 
+After completion of this course, the learner will be able to:
+ 
+1.
+ 
+Develop vocabulary and improve the accuracy in Grammar.
+ 
+2.
+ 
+Apply the concepts of 
+accurate English while writing and become equally ease at 
+using good vocabulary and language skills.
+ 
+3.
+ 
+Develop and Expand writing skills through Controlled and guided activities.
+ 
+4.
+ 
+Compose articles and compositions in English.
+ 
+Course Content 
+ 
+UNIT I
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+              
+20
+ 
+Hours
+ 
+V ocabulary Building: 
+The concept  of Word Formation, Root words from foreign  
+languages and their use in English, Acquaintance with prefixes and suffixes from 
+foreign languages in English to form derivatives. Synonyms, antonyms, and st
+andard 
+abbreviations.
+ 
+UNIT II
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+              
+1
+5
+ 
+Hours
+ 
+Basic Writing Skill s: 
+Sentence Structures, use of phrases and clauses in sent ences,  
+I mportance of proper punctuation, creating coherence, organizing principles of 
+paragraphs in documents, Techniq
+ues f or writing precisely.
+ 
+UNIT III
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+              
+10
+ 
+Hours
+ 
+Identifying Common Errors in Writi ng:
+ 
+Subject
+-
+verb ag reement, Noun
+-
+pronoun  
+agreement, Misplaced modifiers, Articles, Prepositions, Redundancies, Cliché
+ 
+UNIT IV
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+      
+15
+ 
+Hours
+ 
+Natur
+e and Style of sensible Writing: 
+Describing
+, Defining, Classifying, providing 
+examples or evidence, writing introduction and conclusion
+ 
+Writing Practices:
+ 
+Comprehension, Précis Writing, Essay Writing.
+ 
+ 
+Transaction Modes
+ 
+Lecture, Seminar, e
+-
+Team Te aching, e
+-
+Tutoring, Dialogue,  Peer Group Discu ssion,  
+Mobile Teaching, Sel f
+-
+Learning, Collaborative Learning and Cooperative Learning.
+ 
+Suggested Readings
+ 
+
+ 
+S wan , M ich ael. (199 5). Pr ac tic al Engl ish. OUP.
+ 
+
+ 
+Wood, F.T . (2007). Re med ial Engl ish Gr ammar . M ac mill an.
+ 
+
+ 
+Z insser, W. (2001). O n Wr iting Well. H arp er Resource Book. 
+ 
+
+ 
+Lyons, L. H. &He asl y, B. (2006). S tud y Wr iting. C amb r idge Un ivers ity Press.
+ 
+
+ 
+Ku mar, S &L ata, P. ( 2011). Co mmu n ic atio n Sk ills. Oxf ord Univ ers ity Press.
+ 
+
+ 
+C IEFL, H yder ab ad. Exerc ises in Spoken Engl ish.
+ 
+P ar ts. I
+-
+III. Oxf ord Univers ity Pre ss.
+ 
+ 
+ 
+
+
+Course Title:   COMMUNICATION SKIL LS LAB
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+Course Code: 
+BMA1 05
+ 
+0
+ 
+0
+ 
+2
+ 
+1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+             
+ 
+Total Hours: 15
+ 
+Learning Outcomes: 
+After completion of this course, the learner will be able to:
+ 
+1.
+ 
+I llustrate the importance of pronunci ation and apply t he same day to d ay 
+conversation.
+ 
+2.
+ 
+Apply verbal and non
+-
+verbal communication techniques in the Profession al 
+Environment.
+ 
+3.
+ 
+Develop coherence, cohesion and competence in Oral discourse.
+ 
+4.
+ 
+Evaluate the intervie
+w process confidently.
+ 
+Course Content
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Oral Communication
+ 
+(This unit involves i nteractive practice sessions in Language Lab)
+ 
+ﬂ
+ 
+Listening Comprehension
+ 
+ﬂ
+ 
+Pronunciation, I ntonation, Stress and Rhythm
+ 
+ﬂ
+ 
+Common Everyday Situations: Conversations and Dialogues
+ 
+ﬂ
+ 
+Communication at Workplace
+ 
+ﬂ
+ 
+I nterviews
+ 
+ﬂ
+ 
+Formal Presentations
+ 
+ 
+ 
+
+
+ 
+Course Title: 
+Basics
+ 
+of Artificial Intelligence and 
+Machine Learning
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+Course Code: 
+BMA1 06
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+Total Hours
+-
+6
+0
+ 
+Learning Outcomes: 
+After completion of this course, the learner 
+will be able to:
+ 
+1.
+ 
+Design expert system by using AI  tools.
+ 
+2.
+ 
+Compare and develop expert system with the help of Neural Networks
+ 
+3.
+ 
+Understand the concept of expert system using Machine Learning.
+ 
+4.
+ 
+Create an expert system using Fuzzy Logic.
+ 
+Course Content 
+ 
+UNIT I
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+2
+0 Hours
+ 
+Introduction:
+ 
+What is AI , I mportance of AI , Early work in AI , Applications of AI , 
+Knowledge and its definition. Knowledge Representation: P repositional logic, F OPL,  
+Properties of Well
+-
+f ormed formulas, C onversion to Claus al form, I nfere
+nce rules, 
+Resolution principle.
+ 
+Structured Knowledge: 
+I ntroduction, Associate frame structures, Conceptual 
+dependencies and scripts.
+ 
+UNIT II
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+15
+ 
+Hours
+ 
+Knowledge Organization and Manipula tion:
+ 
+Concepts, Uninformed or Blind search, 
+informed sea
+rch, Searching
+-
+ 
+And
+-
+OR graphs, Pattern Recognition, Recognition 
+Classification process, Classification patterns, Recognizing and understanding speech.
+ 
+Generative AI
+: How does generative AI  work? Generative AI models, what are Dall
+-
+E, 
+ChatGPTandBard, use 
+cases,benefitsanditslimitations,Ethicsandbias,Generativ e  
+AI  vs. AI , Generative AI  history.
+ 
+UNIT III 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+10
+ 
+Hours
+ 
+Planning:
+ 
+planningassearch,partialor derplanning,constr uctionanduseofpla nning 
+graphs. Decision
+-
+Making: basics of ut
+ility theory, decision theory, sequential decision 
+problems, elementary game theory and sample applications.
+ 
+UNIT IV  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+              
+15
+ 
+Hours 
+Ex pert System: 
+Definition, Rule bas ed architecture, de aling with uncertai nty, 
+Knowledge acquisition and val
+idation, knowledge system building tools.
+ 
+Knowledge Acquisition:
+ 
+Types of learning, General Learning model, Performance 
+measures. Learning nearest neighbor, naive Bayes, and decision tree classifiers.
+ 
+ 
+ 
+Transaction Modes
+ 
+Lecture, Seminar, e
+-
+Team Te aching, 
+e
+-
+Tutoring, Dialogue,  Peer Group Discu ssion,  
+Mobile Teaching, Sel f
+-
+Learning, Collaborative Learning and Cooperative Learning
+ 
+Suggested Readings
+ 
+
+
+
+ 
+D anW.P atterson.(1 990).In troduc tiontoAr tif ic ialIn tell igenceandExper tS ys te ms. PH I 
+Publ ic ation.
+ 
+
+ 
+Pe ter 
+J ackson. (1998 ). In troduc tion to Exp er t S ys te m. Add ison Wesley.
+ 
+ 
+ 
+
+
+ 
+    
+Total Hours: 15
+ 
+Courselearningoutcomes:Onsuccessfulcompletionof 
+t hiscourse,studentswill  
+be able to:
+ 
+1.
+ 
+Understanding the concept of input and output devices of Computers
+ 
+2.
+ 
+Study to use the I nternet safely, legally, and responsibly.
+ 
+3.
+ 
+Understand an operating system and its working, and solve common 
+problems related to opera
+ting systems
+ 
+4.
+ 
+Learn basic word processing, Spreadsheet and Presentation Graphics 
+Software skills
+ 
+Course Content
+ 
+1.
+ 
+Various Components of a Computer.
+ 
+2.
+ 
+I ntroduction to Microsoft Word & Presentation
+ 
+3.
+ 
+Make a simple presentation on your college, 
+ 
+4.
+ 
+use 3D effects ,  on  prescribed presentation 
+ 
+5.
+ 
+Applications of Ms
+-
+Office Ms
+-
+Word
+ 
+6.
+ 
+Ms
+-
+Excel
+ 
+7.
+ 
+Ms
+-
+PowerPoint
+ 
+8.
+ 
+Create web pages for your college using different tags.
+ 
+9.
+ 
+web Browser and E
+-
+ 
+Mail
+ 
+10. Conversion of a word documents into PDF/ I mage conversion using 
+image file 
+format.
+ 
+ 
+ 
+Course Title:
+ 
+Fundamental of Computer and Information 
+Technology Lab
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+Course Code:   
+ 
+BMA107
+ 
+0
+ 
+0
+ 
+2
+ 
+1
+ 
+
+
+Semester: II
+ 
+Course Title:  MAT HEMATICS 
+
+II
+ 
+L
+ 
+T
+ 
+P
+ 
+Credits
+ 
+Course Code: BMA2 01
+ 
+4
+ 
+0
+ 
+0
+ 
+4
+ 
+ 
+Total Hours: 60
+ 
+Learning Outcomes
+: After completion of this course, the learner will be able to:
+ 
+1.
+ 
+Demonstratethemet hodsofformingand solving 
+Ordinarydiff erentialequationsa nd 
+solve linear differential equations with constant and variable coefficients
+ 
+2.
+ 
+Explain the concept of differential equati on and classifies the  differential equation s 
+with respect to their order and linearity.
+ 
+3.
+ 
+Solve 
+first
+-
+order ordinary and exact differential equations and converts separable 
+and homogeneous equations to exact differential equations by integrating factors.
+ 
+4.
+ 
+Applythemethodofundeterminedcoefficientstosolvethenon
+-
+homogeneouslinear 
+differential eq
+uations with constant coefficients.
+ 
+ 
+Course Content    
+ 
+UNIT I
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+      
+14 Hours
+ 
+First order ordinary differential equations: 
+ 
+
+ns 
+
+ 
+Ordinary differential equations of hi gher orders
+: Secon d order linear differ ential  
+equations with varia ble coefficients, met hod of variation of  p arameters, Cauchy
+-
+Euler 
+equation; Power series
+ 
+solutions; Legendre polynomials, Bessel functions of the first  
+kind and their properties.
+ 
+UNIT II
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+              
+15 Hours
+ 
+Complex  V ariable 
+
+ 
+Differentiation: 
+Differentiation, Cauchy
+-
+Riemann equations, 
+analytic functions, harmonic functions, finding
+ 
+harmonic conjugate; elementary 
+analytic functions (exponential, trigonometric, logarithm) and their properties;  
+Conformal mappings, Mobius transformations and their properties.
+ 
+UNIT III
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+15 Hours                                               
+                                                                                                                             
+                                                                                                                             
+      
+                                                                                                                             
+                                                     
+ 
+Complex V ariable 
+
+ 
+Integration: 
+Contourintegrals,Cauchy
+-
+Goursattheorem(wi
+thout 
+ 
+-
+
+ 
+Evaluat
+ionofdefiniteintegralinvolvingsineandcosine,Evaluationofcertainimproper 
+integrals using the Bromwich contour.
+ 
+
+
+UNIT IV
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+      
+16 Hours
+ 
+Transform Calculus: 
+Laplace Transfor m, Properties of Laplace Transform, La place 
+transform of periodic f
+unctions.
+ 
+Finding inverse Laplace transform by different methods, convolution theorem .  
+Evaluation of I ntegrals by Laplace transform, solving ODEs and PDEs by Laplace 
+Transform method, Fourier transforms.
+ 
+ 
+ 
+Transaction Modes
+ 
+Lecture, Seminar, e
+-
+Team 
+Te aching, e
+-
+Tutoring, Dialogue,  Peer Group Discu ssion,  
+Mobile Teaching, Sel f
+-
+Learning, Collaborative Learning and Cooperative Learning
+ 
+Suggested Readings
+ 
+
+ 
+T ho mes, G.B. and F in ney, R.L. (2010) C alc ulus and An al ytic Geo me tr y; N in th Ed ition ; 
+Pe arson Educ ation
+ 
+
+ 
+K
+reysz ig, E.  (1998) Adv anced Eng ineer ing M athe matics;  E ig h th Ed ition,  John W iley 
+and sons.
+ 
+
+ 
+Gre wal , B.S. (1965) H igher Eng ineer ing M athe matics; Kh ann a Publ ishers, Ne w D elh i.
+ 
+
+ 
+B abu R am (20 09)  Adv ance Eng ineer ing M athe matics; F irs t Ed ition; Pe ar son 
+Educ ation.
+ 
+
+ 
+R
+ich ardCour an t and Fr itzJohn(2012) In troduc tion toC alculus  andAn al ys is,Volu me 
+II,
+ 
+V Spr inger Publ ic a
+ 
+ 
+ 
+
+

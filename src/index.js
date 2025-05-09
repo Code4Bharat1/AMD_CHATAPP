@@ -6,13 +6,15 @@ import jwt from "jsonwebtoken";
 import cors from "cors";
 
 import messageRoute from "./routes/message.route.js";
+import expertMessageRoute from "./routes/Expert.message.route.js";
 import { app, server } from "./lib/socket.js";
 
 dotenv.config();
 
 const PORT = process.env.PORT;
 
-const allowedOrigins = ["http://localhost:3001", "http://localhost:3000"]; // your frontend dev URL
+
+const allowedOrigins = ["http://localhost:3001", "http://localhost:3000" , "http://localhost:8080"]; // your frontend dev URL
 app.use(
   cors({
     origin: allowedOrigins,
@@ -24,6 +26,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/message", messageRoute);
+app.use("/api/message", expertMessageRoute);
 
 // Route to set a cookie based on user input
 app.get("/set-user-cookie/:id", (req, res) => {

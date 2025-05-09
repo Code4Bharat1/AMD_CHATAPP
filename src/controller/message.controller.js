@@ -90,8 +90,8 @@ export const getMessages = async (req, res) => {
     const messages = await messageCollection
       .find({
         $or: [
-          { senderId: senderObjectId, receiverId: receiverObjectId }, // FIXED: reciverId -> receiverId
-          { senderId: receiverObjectId, receiverId: senderObjectId }, // FIXED: reciverId -> receiverId
+          { senderId: senderObjectId, receiverId: receiverObjectId },
+          { senderId: receiverObjectId, receiverId: senderObjectId },
         ],
       })
       .sort({ createdAt: 1 }) // Sort messages by time
@@ -100,14 +100,33 @@ export const getMessages = async (req, res) => {
     console.log(`Found ${messages.length} messages`);
 
     // Format messages for frontend
-    const formattedMessages = messages.map((msg) => ({
-      _id: msg._id,
-      senderId: msg.senderId.toString(),
-      receiverId: msg.receiverId.toString(), // FIXED: reciverId -> receiverId
-      text: msg.text,
-      time: msg.createdAt,
-      isEdited: msg.isEdited || false,
-    }));
+    const formattedMessages = messages.map((msg) => {
+      const formattedMsg = {
+        _id: msg._id,
+        senderId: msg.senderId.toString(),
+        receiverId: msg.receiverId.toString(),
+        text: msg.text,
+        time: msg.createdAt,
+        isEdited: msg.isEdited || false,
+      };
+
+      // file message formatting
+      if (msg.isFile) {
+        formattedMsg.isFile = true;
+        formattedMsg.fileId = msg.fileId ? msg.fileId.toString() : null;
+        formattedMsg.fileType = msg.fileType;
+        formattedMsg.fileSize = msg.fileSize;
+      }
+      // Voice message formatting
+      if (msg.isVoice) {
+        formattedMsg.isVoice = true;
+        formattedMsg.voiceId = msg.voiceId ? msg.voiceId.toString() : null;
+        formattedMsg.voiceDuration = msg.voiceDuration || null;
+        formattedMsg.voiceMimeType = msg.voiceMimeType || "audio/webm"; // fallback type
+      }
+
+      return formattedMsg;
+    });
 
     // Always return an array of messages
     res.status(200).json({ messages: formattedMessages });
@@ -394,8 +413,7 @@ export const editMessage = async (req, res) => {
       });
     }
 
-    // Important: Use updateOne instead of findOneAndUpdate
-    // This seems to be more reliable in MongoDB and avoids the "not found" issue
+    // Update the message
     const updateResult = await messages.updateOne(
       { _id: messageObjectId },
       {
@@ -417,42 +435,45 @@ export const editMessage = async (req, res) => {
       });
     }
 
-    // Since we already know the message exists, get the updated message
+    // Get the updated message for emitting via socket
     const updatedMessageDoc = await messages.findOne({ _id: messageObjectId });
-
-    // Format the updated message for response
+    
+    // IMPORTANT: Format the updated message correctly to match client expectations
     const updatedMessage = {
       _id: updatedMessageDoc._id.toString(),
       senderId: updatedMessageDoc.senderId.toString(),
       receiverId: updatedMessageDoc.receiverId.toString(),
       text: updatedMessageDoc.text,
       time: updatedMessageDoc.createdAt,
+      createdAt: updatedMessageDoc.createdAt,
       isEdited: true,
       editedAt: updatedMessageDoc.editedAt,
+      // Include any other fields that might be in your message objects
     };
 
-    // Debug info
     console.log("Message updated successfully:", updatedMessage);
 
-    // Get receiver socket ID to notify them of the edit
-    const receiverSocketId = getReceiverSocketId(
-      updatedMessageDoc.receiverId.toString()
-    );
-    console.log("Receiver socket ID found:", receiverSocketId);
-
+    // Emit socket event to both sender and receiver
+    // Get socket IDs for both users
+    const senderSocketId = getReceiverSocketId(updatedMessageDoc.senderId.toString());
+    const receiverSocketId = getReceiverSocketId(updatedMessageDoc.receiverId.toString());
+    
+    // Emit to sender
+    if (senderSocketId) {
+      io.to(senderSocketId).emit("messageEdited", updatedMessage);
+      console.log("Socket event emitted to sender");
+    }
+    
+    // Emit to receiver
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("messageEdited", updatedMessage);
-      console.log("Socket event emitted for message edit");
-    } else {
-      console.log(
-        "No socket connection found for receiver - real-time update not possible"
-      );
+      console.log("Socket event emitted to receiver");
     }
 
     // Respond with success and the updated message
     return res.status(200).json({
       success: true,
-      ...updatedMessage,
+      message: updatedMessage,
     });
   } catch (err) {
     console.error("❌ Error updating message:", err.message);
