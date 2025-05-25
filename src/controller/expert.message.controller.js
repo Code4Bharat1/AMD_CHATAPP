@@ -1,100 +1,95 @@
-// Expert Chat Controller
-// Handles messaging between experts in the system
-
 import { getDB } from "../lib/db.js";
 import { ObjectId } from "mongodb";
-import { getReceiverSocketId, io } from "../lib/socket.js";
+import { getExpertSocketId, io } from "../lib/socket.js"; // Use getExpertSocketId for experts
 
-// Get connected experts for sidebar - used in frontend expert chat component
+// Get connected experts for sidebar (unchanged)
 export const getExpertsForSidebar = async (req, res) => {
   try {
     const db = getDB();
-    
-    // Authentication check
-    if (!req.expert || !req.expert._id  || !ObjectId.isValid(req.expert._id)) {
+
+    if (!req.expert || !req.expert._id || !ObjectId.isValid(req.expert._id)) {
       console.error("Authentication error: Missing expert data in request");
-      return res.status(401).json({ message: "Unauthorized - Only authenticated experts can access this feature" });
+      return res.status(401).json({
+        message:
+          "Unauthorized - Only authenticated experts can access this feature",
+      });
     }
-    
+
     const currentExpertId = new ObjectId(req.expert._id);
     const sessionsCollection = db.collection("experttoexpertsessions");
     const expertCollection = db.collection("expert");
 
-    // Find all active sessions where current expert is involved
-    const activeSessions = await sessionsCollection.find({
-      $or: [
-        { consultingExpertID: currentExpertId },
-        { expertId: currentExpertId }
-      ],
-      status: "confirmed" // Only show confirmed sessions
-    }).toArray();
+    const activeSessions = await sessionsCollection
+      .find({
+        $or: [
+          { consultingExpertID: currentExpertId },
+          { expertId: currentExpertId },
+        ],
+        status: "confirmed",
+      })
+      .toArray();
 
-    // Extract unique expert IDs from sessions (excluding current expert)
-    console.log(activeSessions.consultingExpertID === currentExpertId);
-    const expertIds = activeSessions.flatMap(session => [
-      session.consultingExpertID,
-      session.expertId
-    ]).filter(id => !id.equals(currentExpertId));
+    const expertIds = activeSessions
+      .flatMap((session) => [session.consultingExpertID, session.expertId])
+      .filter((id) => !id.equals(currentExpertId));
 
     if (expertIds.length === 0) {
       console.log("No active expert sessions found");
       return res.status(200).json([]);
     }
 
-    // Get expert details for these IDs
-    const connectedExperts = await expertCollection.find(
-      { _id: { $in: expertIds } },
-      {
-        projection: {
-          _id: 1,
-          role: 1,
-          firstName: 1,
-          lastName: 1,
-          photoFile: 1,
-          specialization: 1,
-          status: 1,
-          lastActive: 1, // Useful for showing activity status
-          rating: 1 // Might be useful for expert selection
+    const connectedExperts = await expertCollection
+      .find(
+        { _id: { $in: expertIds } },
+        {
+          projection: {
+            _id: 1,
+            role: 1,
+            firstName: 1,
+            lastName: 1,
+            photoFile: 1,
+            specialization: 1,
+            status: 1,
+            lastActive: 1,
+            rating: 1,
+          },
         }
-      }
-    ).toArray();
+      )
+      .toArray();
 
     console.log(`Found ${connectedExperts.length} connected experts`);
     return res.status(200).json(connectedExperts);
-
   } catch (error) {
     console.error("❌ Error in getExpertsForSidebar:", error.message);
-    res.status(500).json({ 
+    res.status(500).json({
       message: "Internal Server Error",
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+      error: process.env.NODE_ENV === "development" ? error.message : undefined,
     });
   }
 };
 
-// // Get messages between current expert and selected expert
+// Get messages between current expert and selected expert (unchanged)
 export const getExpertMessages = async (req, res) => {
   try {
     const db = getDB();
     const expertMessageCollection = db.collection("expertMessages");
-    const { id: receiverId } = req.params; // Receiver expert ID from the request
+    const { id: receiverId } = req.params;
 
-    // More robust check for authenticated expert
     if (!req.expert || !req.expert._id) {
       console.error("Authentication error: Missing expert data in request");
-      return res.status(401).json({ message: "Unauthorized - Only experts can access this feature" });
+      return res.status(401).json({
+        message: "Unauthorized - Only experts can access this feature",
+      });
     }
 
-    // Get sender ID from authenticated expert
     const senderId = req.expert._id;
-
-    // Convert string IDs to ObjectIds for MongoDB query
-    const senderObjectId = typeof senderId === 'string' ? new ObjectId(senderId) : senderId;
+    const senderObjectId =
+      typeof senderId === "string" ? new ObjectId(senderId) : senderId;
     const receiverObjectId = new ObjectId(receiverId);
 
     console.log("Expert Sender ID:", senderObjectId);
     console.log("Expert Receiver ID:", receiverObjectId);
 
-    // Find all messages between these two experts
     const messages = await expertMessageCollection
       .find({
         $or: [
@@ -102,23 +97,21 @@ export const getExpertMessages = async (req, res) => {
           { senderId: receiverObjectId, receiverId: senderObjectId },
         ],
       })
-      .sort({ createdAt: 1 }) // Sort messages by time
+      .sort({ createdAt: 1 })
       .toArray();
 
     console.log(`Found ${messages.length} expert messages`);
 
-    // Format messages for frontend
-    const formattedMessages = messages.map(msg => ({
+    const formattedMessages = messages.map((msg) => ({
       _id: msg._id,
       senderId: msg.senderId.toString(),
       receiverId: msg.receiverId.toString(),
       text: msg.text,
       time: msg.createdAt,
       isEdited: msg.isEdited || false,
-      attachments: msg.attachments || [] // Support for attachments like files or images
+      attachments: msg.attachments || [],
     }));
 
-    // Always return an array of messages
     res.status(200).json({ messages: formattedMessages });
   } catch (error) {
     console.error("❌ Error in getExpertMessages:", error.message);
@@ -126,7 +119,7 @@ export const getExpertMessages = async (req, res) => {
   }
 };
 
-// // Rest of the controller functions remain unchanged
+// Send message between experts (updated for room-based messaging)
 export const sendExpertMessage = async (req, res) => {
   try {
     const db = getDB();
@@ -141,12 +134,15 @@ export const sendExpertMessage = async (req, res) => {
     }
 
     if (!text && (!attachments || attachments.length === 0)) {
-      return res.status(400).json({ message: "Message must contain text or attachments" });
+      return res
+        .status(400)
+        .json({ message: "Message must contain text or attachments" });
     }
 
     // Create the new message
     const newMessage = {
-      senderId: typeof senderId === 'string' ? new ObjectId(senderId) : senderId,
+      senderId:
+        typeof senderId === "string" ? new ObjectId(senderId) : senderId,
       receiverId: new ObjectId(receiverId),
       text: text ? String(text) : "",
       attachments: attachments || [],
@@ -158,20 +154,20 @@ export const sendExpertMessage = async (req, res) => {
 
     // Format the response message
     const responseMessage = {
-      _id: result.insertedId,
+      _id: result.insertedId.toString(),
       senderId: newMessage.senderId.toString(),
       receiverId: newMessage.receiverId.toString(),
       text: newMessage.text,
       attachments: newMessage.attachments,
-      time: newMessage.createdAt
+      time: newMessage.createdAt,
     };
 
-    // Emit the message through socket.io if receiver is online
-    const receiverSocketId = getReceiverSocketId(receiverId);
-    if (receiverSocketId) {
-      console.log(`Sending expert message to socket: ${receiverSocketId}`);
-      io.to(receiverSocketId).emit("newExpertMessage", responseMessage);
-    }
+    // Emit to the conversation room
+    const roomId = [senderId.toString(), receiverId.toString()]
+      .sort()
+      .join("-");
+    console.log(`Emitting newExpertMessage to room: ${roomId}`);
+    io.to(roomId).emit("newExpertMessage", responseMessage);
 
     // Send success response
     res.status(201).json(responseMessage);
@@ -181,7 +177,7 @@ export const sendExpertMessage = async (req, res) => {
   }
 };
 
-// Delete a specific message between experts
+// Delete a specific message between experts (updated)
 export const deleteExpertMessage = async (req, res) => {
   const { messageID } = req.body;
 
@@ -190,316 +186,234 @@ export const deleteExpertMessage = async (req, res) => {
     const db = getDB();
     const expertMessages = db.collection("expertMessages");
 
-    // Validate messageID format
-    if (!messageID || typeof messageID !== 'string' || messageID.trim() === '') {
-      return res.status(200).json({ 
+    if (
+      !messageID ||
+      typeof messageID !== "string" ||
+      messageID.trim() === ""
+    ) {
+      return res.status(400).json({
         success: false,
         message: "Invalid message ID format",
-        alreadyDeleted: true 
       });
     }
-    
+
     let messageObjectId;
     try {
       messageObjectId = new ObjectId(messageID);
     } catch (err) {
       console.error("Invalid ObjectId format:", err);
-      return res.status(200).json({ 
+      return res.status(400).json({
         success: false,
         message: "Invalid message ID format",
-        alreadyDeleted: true 
       });
     }
 
-    // Find the message by its ID
+    const message = await expertMessages.findOne({ _id: messageObjectId });
+
+    if (!message) {
+      console.log(`Message not found: ${messageID}`);
+      return res.status(200).json({
+        message: "Message already deleted or not found",
+        alreadyDeleted: true,
+      });
+    }
+
+    if (!message.senderId.equals(new ObjectId(senderID))) {
+      return res
+        .status(403)
+        .json({ message: "Not authorized to delete this message" });
+    }
+
+    const receiverId = message.receiverId;
+    const result = await expertMessages.deleteOne({ _id: messageObjectId });
+
+    if (result.deletedCount === 0) {
+      return res.status(200).json({
+        message: "Message already deleted",
+        alreadyDeleted: true,
+      });
+    }
+
+    // Emit to the conversation room
+    const roomId = [senderID.toString(), receiverId.toString()]
+      .sort()
+      .join("-");
+    console.log(`Emitting expertMessageDeleted to room: ${roomId}`);
+    io.to(roomId).emit("expertMessageDeleted", {
+      messageID: messageID,
+      senderID: senderID.toString(),
+      receiverID: receiverId.toString(),
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Message deleted successfully",
+      messageId: messageID,
+      deleted: true,
+    });
+  } catch (err) {
+    console.error("❌ Error deleting expert message:", err.message);
+    return res.status(500).json({
+      success: false,
+      message: "Error processing deletion request",
+    });
+  }
+};
+
+// Delete all messages between experts (updated)
+export const deleteAllExpertMessages = async (req, res) => {
+  const { senderID, receiverID } = req.body; // Fixed typo
+
+  // Validate inputs
+  if (!senderID || !receiverID) {
+    return res
+      .status(400)
+      .json({ message: "senderID and receiverID are required" });
+  }
+
+  try {
+    // Validate ObjectId format
+    if (!ObjectId.isValid(senderID) || !ObjectId.isValid(receiverID)) {
+      return res
+        .status(400)
+        .json({ message: "Invalid senderID or receiverID format" });
+    }
+
+    const db = getDB();
+    const expertMessages = db.collection("expertMessages");
+
+    const senderObjId = new ObjectId(senderID);
+    const receiverObjId = new ObjectId(receiverID);
+
+    console.log("Deleting messages between:", { senderObjId, receiverObjId });
+
+    // Check if messages exist before deletion
+    const messageCount = await expertMessages.countDocuments({
+      $or: [
+        { senderId: senderObjId, receiverId: receiverObjId },
+        { senderId: receiverObjId, receiverId: senderObjId },
+      ],
+    });
+    console.log(`Found ${messageCount} messages to delete`);
+
+    const result = await expertMessages.deleteMany({
+      $or: [
+        { senderId: senderObjId, receiverId: receiverObjId },
+        { senderId: receiverObjId, receiverId: senderObjId },
+      ],
+    });
+
+    if (result.deletedCount === 0) {
+      return res.status(200).json({
+        message: "No messages found to delete",
+        alreadyDeleted: true,
+      });
+    }
+
+    // Emit to the conversation room only on successful deletion
+    const roomId = [senderID.toString(), receiverID.toString()]
+      .sort()
+      .join("-");
+    console.log(`Emitting allExpertMessagesDeleted to room: ${roomId}`);
+    io.to(roomId).emit("allExpertMessagesDeleted", {
+      senderID,
+      receiverID, // Fixed typo
+      deletedBy: senderID,
+      deletedAt: new Date(),
+    });
+
+    return res.status(200).json({
+      message: "All messages deleted",
+      deletedCount: result.deletedCount,
+    });
+  } catch (err) {
+    console.error("❌ Error deleting expert messages:", err);
+    return res
+      .status(500)
+      .json({ message: "Error deleting messages", error: err.message });
+  }
+};
+
+// Edit a message between experts (updated)
+export const editExpertMessage = async (req, res) => {
+  const { messageID, newText } = req.body;
+
+  try {
+    const db = getDB();
+    const expertMessages = db.collection("expertMessages");
+
+    if (
+      !messageID ||
+      typeof messageID !== "string" ||
+      messageID.trim() === ""
+    ) {
+      return res.status(400).json({ message: "Invalid message ID format" });
+    }
+
+    let messageObjectId;
+    try {
+      messageObjectId = new ObjectId(String(messageID));
+    } catch (err) {
+      console.error("Invalid ObjectId format:", err);
+      return res.status(400).json({ message: "Invalid message ID format" });
+    }
+
     const message = await expertMessages.findOne({
       _id: messageObjectId,
     });
 
     if (!message) {
       console.log(`Expert message not found with ID: ${messageID}`);
-      return res.status(200).json({ 
-        success: false,
-        message: "Message already deleted or not found",
-        alreadyDeleted: true 
+      return res.status(404).json({
+        message: "Message not found or has been deleted",
       });
     }
 
-    // Check if the sender is the one who sent the message
-    if (!message.senderId.equals(new ObjectId(senderID))) {
-      return res.status(200).json({ 
+    if (!message.senderId.equals(req.expert._id)) {
+      return res
+        .status(403)
+        .json({ message: "Only the sender can edit this message" });
+    }
+
+    const result = await expertMessages.updateOne(
+      { _id: messageObjectId },
+      {
+        $set: { text: newText, isEdited: true, editedAt: new Date() },
+      }
+    );
+
+    if (result.modifiedCount === 0) {
+      return res.status(200).json({
         success: false,
-        message: "You are not authorized to delete this message" 
+        message: "Message update failed, message may have been deleted",
       });
     }
 
-    // Delete the message permanently
-    const result = await expertMessages.findOneAndDelete({
+    const updatedMessageDoc = await expertMessages.findOne({
       _id: messageObjectId,
     });
 
-    if (!result.value) {
-      return res.status(200).json({ 
-        success: false,
-        message: "Message already deleted", 
-        alreadyDeleted: true 
-      });
-    }
-
-    // Get receiver socket ID to notify them of message deletion in real-time
-    const receiverSocketId = getReceiverSocketId(message.receiverId.toString());
-    
-    // Create payload for socket emissions - IMPORTANT: Use camelCase consistently
-    const deletePayload = { 
-      messageId: messageID, // Keep camelCase for consistency
-      senderId: senderID.toString(),
-      receiverId: message.receiverId.toString() // Add receiver ID for completeness
+    const updatedMessage = {
+      _id: updatedMessageDoc._id.toString(),
+      senderId: updatedMessageDoc.senderId.toString(),
+      receiverId: updatedMessageDoc.receiverId.toString(),
+      text: updatedMessageDoc.text,
+      attachments: updatedMessageDoc.attachments || [],
+      time: updatedMessageDoc.createdAt,
+      isEdited: true,
+      editedAt: updatedMessageDoc.editedAt,
     };
-    
-    try {
-      // Emit to receiver if they're online
-      if (receiverSocketId) {
-        console.log(`Emitting expert message deletion event to receiver socket: ${receiverSocketId}`);
-        io.to(receiverSocketId).emit("expertMessageDeleted", deletePayload);
-      }
-      
-      // Also emit to the sender's own socket to ensure they get the update
-      const senderSocketId = getExpertSocketId(senderID.toString()); // Use getExpertSocketId instead
-      if (senderSocketId) {
-        console.log(`Emitting expert message deletion event to sender socket: ${senderSocketId}`);
-        io.to(senderSocketId).emit("expertMessageDeleted", deletePayload);
-      }
-      
-      // For reliability, broadcast to all connections
-      io.emit("expertMessageDeleted", deletePayload);
-    } catch (socketError) {
-      console.error("Socket emission error:", socketError);
-    }
 
-    return res.status(200).json({
-      success: true,
-      message: "Message deleted",
-      deleted: result.value !== null,
-    });
+    // Emit to the conversation room
+    const roomId = [updatedMessage.senderId, updatedMessage.receiverId]
+      .sort()
+      .join("-");
+    console.log(`Emitting expertMessageEdited to room: ${roomId}`);
+    io.to(roomId).emit("expertMessageEdited", updatedMessage);
+
+    return res.status(200).json(updatedMessage);
   } catch (err) {
-    console.error("❌ Error deleting expert message:", err.message);
-    return res.status(200).json({ 
-      success: false,
-      message: "Error processing deletion request" 
-    });
+    console.error("❌ Error updating expert message:", err.message);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
-// // Delete all messages between two experts
-// export const deleteAllExpertMessages = async (req, res) => {
-//   const { receiverId } = req.body;
-
-//   try {
-//     const db = getDB();
-//     const expertMessages = db.collection("expertMessages");
-
-//     const senderObjId = req.expert._id;
-//     const receiverObjId = new ObjectId(receiverId);
-
-//     // Find and delete all messages from sender to receiver and vice versa
-//     const result = await expertMessages.deleteMany({
-//       $or: [
-//         { senderId: senderObjId, receiverId: receiverObjId },
-//         { senderId: receiverObjId, receiverId: senderObjId },
-//       ],
-//     });
-
-//     if (result.deletedCount === 0) {
-//       return res.status(200).json({ 
-//         message: "No messages found to delete",
-//         alreadyDeleted: true
-//       });
-//     }
-
-//     // Emit to the receiver that all messages have been deleted
-//     const receiverSocketId = getReceiverSocketId(receiverId);
-//     if (receiverSocketId) {
-//       console.log(`Emitting delete all expert messages event to socket: ${receiverSocketId}`);
-//       io.to(receiverSocketId).emit("allExpertMessagesDeleted", { 
-//         conversationPartnerId: senderObjId.toString()
-//       });
-//     }
-
-//     return res.status(200).json({
-//       message: "All messages deleted",
-//       deletedCount: result.deletedCount,
-//     });
-//   } catch (err) {
-//     console.error("❌ Error deleting expert messages:", err.message);
-//     return res.status(500).json({ message: "Error deleting messages" });
-//   }
-// };
-
-// // Edit a message between experts
-// export const editExpertMessage = async (req, res) => {
-//   const { messageID, newText } = req.body;
-
-//   try {
-//     const db = getDB();
-//     const expertMessages = db.collection("expertMessages");
-
-//     // Validate messageID format
-//     if (!messageID || typeof messageID !== 'string' || messageID.trim() === '') {
-//       return res.status(400).json({ message: "Invalid message ID format" });
-//     }
-    
-//     let messageObjectId;
-//     try {
-//       messageObjectId = new ObjectId(String(messageID));
-//     } catch (err) {
-//       console.error("Invalid ObjectId format:", err);
-//       return res.status(400).json({ message: "Invalid message ID format" });
-//     }
-
-//     // Find the message by its ID
-//     const message = await expertMessages.findOne({
-//       _id: messageObjectId,
-//     });
-
-//     if (!message) {
-//       console.log(`Expert message not found with ID: ${messageID}`);
-//       return res.status(404).json({ 
-//         message: "Message not found or has been deleted"
-//       });
-//     }
-
-//     // Check if the authenticated expert is the sender of the message
-//     if (!message.senderId.equals(req.expert._id)) {
-//       return res
-//         .status(403)
-//         .json({ message: "Only the sender can edit this message" });
-//     }
-
-//     // Update the message
-//     const result = await expertMessages.findOneAndUpdate(
-//       { _id: messageObjectId },
-//       {
-//         $set: { text: newText, isEdited: true, editedAt: new Date() },
-//       },
-//       { returnDocument: "after" }
-//     );
-
-//     if (!result.value) {
-//       return res.status(404).json({ 
-//         message: "Message update failed, message may have been deleted"
-//       });
-//     }
-
-//     // Format the updated message for response
-//     const updatedMessage = {
-//       _id: result.value._id.toString(),
-//       senderId: result.value.senderId.toString(),
-//       receiverId: result.value.receiverId.toString(),
-//       text: result.value.text,
-//       attachments: result.value.attachments || [],
-//       time: result.value.createdAt,
-//       isEdited: true,
-//       editedAt: result.value.editedAt
-//     };
-
-//     // Get receiver socket ID to notify them of the edit
-//     const receiverSocketId = getReceiverSocketId(result.value.receiverId.toString());
-//     if (receiverSocketId) {
-//       io.to(receiverSocketId).emit("expertMessageEdited", updatedMessage);
-//     }
-
-//     // Respond with the updated message
-//     return res.status(200).json(updatedMessage);
-//   } catch (err) {
-//     console.error("❌ Error updating expert message:", err.message);
-//     return res.status(500).json({ message: "Internal Server Error" });
-//   }
-// };
-
-// // Mark messages as read
-// export const markExpertMessagesAsRead = async (req, res) => {
-//   try {
-//     const db = getDB();
-//     const expertMessageCollection = db.collection("expertMessages");
-//     const { senderId } = req.body;
-//     const receiverId = req.expert._id;
-
-//     if (!senderId) {
-//       return res.status(400).json({ message: "Missing sender ID" });
-//     }
-
-//     // Convert IDs to ObjectId
-//     const senderObjectId = new ObjectId(senderId);
-//     const receiverObjectId = typeof receiverId === 'string' ? new ObjectId(receiverId) : receiverId;
-
-//     // Mark messages as read where current expert is the receiver
-//     const result = await expertMessageCollection.updateMany(
-//       { 
-//         senderId: senderObjectId, 
-//         receiverId: receiverObjectId,
-//         read: { $ne: true } // Only update unread messages
-//       },
-//       { $set: { read: true, readAt: new Date() } }
-//     );
-
-//     // Notify sender that messages have been read
-//     const senderSocketId = getReceiverSocketId(senderId);
-//     if (senderSocketId) {
-//       io.to(senderSocketId).emit("expertMessagesRead", {
-//         readBy: receiverObjectId.toString(),
-//         timestamp: new Date()
-//       });
-//     }
-
-//     return res.status(200).json({
-//       message: "Messages marked as read",
-//       count: result.modifiedCount
-//     });
-//   } catch (error) {
-//     console.error("❌ Error marking messages as read:", error.message);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// };
-
-// // Get unread message count for an expert
-// export const getUnreadExpertMessageCount = async (req, res) => {
-//   try {
-//     const db = getDB();
-//     const expertMessageCollection = db.collection("expertMessages");
-    
-//     // More robust check for authenticated expert
-//     if (!req.expert || !req.expert._id) {
-//       console.error("Authentication error: Missing expert data in request");
-//       return res.status(401).json({ message: "Unauthorized - Only experts can access this feature" });
-//     }
-    
-//     const expertId = req.expert._id;
-
-//     // Count all unread messages where expert is the receiver
-//     const unreadCounts = await expertMessageCollection.aggregate([
-//       { 
-//         $match: { 
-//           receiverId: expertId,
-//           read: { $ne: true } 
-//         } 
-//       },
-//       {
-//         $group: {
-//           _id: "$senderId",
-//           count: { $sum: 1 }
-//         }
-//       }
-//     ]).toArray();
-
-//     // Format the response
-//     const formattedCounts = {};
-//     unreadCounts.forEach(item => {
-//       formattedCounts[item._id.toString()] = item.count;
-//     });
-
-//     return res.status(200).json(formattedCounts);
-//   } catch (error) {
-//     console.error("❌ Error getting unread message count:", error.message);
-//     res.status(500).json({ message: "Internal Server Error" });
-//   }
-// };

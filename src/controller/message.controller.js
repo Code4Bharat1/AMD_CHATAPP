@@ -64,29 +64,39 @@ export const getUserForSidebar = async (req, res) => {
   }
 };
 
-// Get messages between current user and selected user
 export const getMessages = async (req, res) => {
+  console.log("🔍 Route hit:", req.path);
+  console.log("🔍 Params:", req.params);
+  console.log("🔍 User:", req.user);
+  console.log("🔍 Expert:", req.expert);
   try {
     const db = getDB();
+    if (!db) throw new Error("Database connection failed");
     const messageCollection = db.collection("messages");
-    const { id: receiverId } = req.params; // Receiver ID from the request
+    const { id: receiverId } = req.params;
 
     // Get sender ID from authenticated user or expert
-    const senderId = req.user ? req.user._id : req.expert._id;
-
+    const senderId = req.user?._id || req.expert?._id;
     if (!senderId) {
       return res.status(401).json({ message: "Unauthorized - No sender ID" });
     }
 
-    // Convert string IDs to ObjectIds for MongoDB query
+    // Validate IDs
+    if (!ObjectId.isValid(senderId) || !ObjectId.isValid(receiverId)) {
+      return res.status(400).json({ message: "Invalid sender or receiver ID" });
+    }
+
+    // Convert string IDs to ObjectIds
     const senderObjectId =
       typeof senderId === "string" ? new ObjectId(senderId) : senderId;
     const receiverObjectId = new ObjectId(receiverId);
 
-    console.log("Sender ID:", senderObjectId);
-    console.log("Receiver ID:", receiverObjectId);
+    // Pagination parameters (optional, from query)
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 50;
+    const skip = (page - 1) * limit;
 
-    // Find all messages between these two users
+    // Find messages between the two users
     const messages = await messageCollection
       .find({
         $or: [
@@ -94,15 +104,15 @@ export const getMessages = async (req, res) => {
           { senderId: receiverObjectId, receiverId: senderObjectId },
         ],
       })
-      .sort({ createdAt: 1 }) // Sort messages by time
+      .sort({ createdAt: 1 })
+      .skip(skip)
+      .limit(limit)
       .toArray();
-
-    console.log(`Found ${messages.length} messages`);
 
     // Format messages for frontend
     const formattedMessages = messages.map((msg) => {
       const formattedMsg = {
-        _id: msg._id,
+        _id: msg._id.toString(),
         senderId: msg.senderId.toString(),
         receiverId: msg.receiverId.toString(),
         text: msg.text,
@@ -110,28 +120,44 @@ export const getMessages = async (req, res) => {
         isEdited: msg.isEdited || false,
       };
 
-      // file message formatting
+      // File message formatting
       if (msg.isFile) {
         formattedMsg.isFile = true;
-        formattedMsg.fileId = msg.fileId ? msg.fileId.toString() : null;
+        formattedMsg.fileId = msg.fileId?.toString() || null;
         formattedMsg.fileType = msg.fileType;
         formattedMsg.fileSize = msg.fileSize;
       }
+
       // Voice message formatting
       if (msg.isVoice) {
         formattedMsg.isVoice = true;
-        formattedMsg.voiceId = msg.voiceId ? msg.voiceId.toString() : null;
+        formattedMsg.voiceId = msg.voiceId?.toString() || null;
         formattedMsg.voiceDuration = msg.voiceDuration || null;
-        formattedMsg.voiceMimeType = msg.voiceMimeType || "audio/webm"; // fallback type
+        formattedMsg.voiceMimeType = msg.voiceMimeType || "audio/webm";
       }
 
       return formattedMsg;
     });
 
-    // Always return an array of messages
-    res.status(200).json({ messages: formattedMessages });
+    // Get total message count for pagination (optional)
+    const totalMessages = await messageCollection.countDocuments({
+      $or: [
+        { senderId: senderObjectId, receiverId: receiverObjectId },
+        { senderId: receiverObjectId, receiverId: senderObjectId },
+      ],
+    });
+
+    res.status(200).json({
+      messages: formattedMessages,
+      totalMessages,
+      page,
+      limit,
+    });
   } catch (error) {
     console.error("❌ Error in getMessages:", error.message);
+    if (error.message.includes("ObjectId")) {
+      return res.status(400).json({ message: "Invalid ID format" });
+    }
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
@@ -437,7 +463,7 @@ export const editMessage = async (req, res) => {
 
     // Get the updated message for emitting via socket
     const updatedMessageDoc = await messages.findOne({ _id: messageObjectId });
-    
+
     // IMPORTANT: Format the updated message correctly to match client expectations
     const updatedMessage = {
       _id: updatedMessageDoc._id.toString(),
@@ -455,15 +481,19 @@ export const editMessage = async (req, res) => {
 
     // Emit socket event to both sender and receiver
     // Get socket IDs for both users
-    const senderSocketId = getReceiverSocketId(updatedMessageDoc.senderId.toString());
-    const receiverSocketId = getReceiverSocketId(updatedMessageDoc.receiverId.toString());
-    
+    const senderSocketId = getReceiverSocketId(
+      updatedMessageDoc.senderId.toString()
+    );
+    const receiverSocketId = getReceiverSocketId(
+      updatedMessageDoc.receiverId.toString()
+    );
+
     // Emit to sender
     if (senderSocketId) {
       io.to(senderSocketId).emit("messageEdited", updatedMessage);
       console.log("Socket event emitted to sender");
     }
-    
+
     // Emit to receiver
     if (receiverSocketId) {
       io.to(receiverSocketId).emit("messageEdited", updatedMessage);

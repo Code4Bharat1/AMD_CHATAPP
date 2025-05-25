@@ -14,7 +14,7 @@ dotenv.config();
 const PORT = process.env.PORT;
 
 
-const allowedOrigins = ["http://localhost:3001", "http://localhost:3000" , "http://localhost:8080"]; // your frontend dev URL
+const allowedOrigins = "*"; // your frontend dev URL
 app.use(
   cors({
     origin: allowedOrigins,
