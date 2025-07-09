@@ -41,6 +41,9 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+app.use("/", (req, res) => {
+  res.status(200).json({ message: "API is running" });
+});
 app.use("/api/message", messageRoute);
 app.use("/api/message", expertMessageRoute);
 
