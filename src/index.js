@@ -15,7 +15,8 @@ const PORT = process.env.PORT;
 
 
 const allowedOrigins = [
-  "https://hibafarrash.shourk.com", // your specific frontend URL
+  "https://hibafarrash.shourk.com",
+  "https://hiba-chat.shourk.com",// your specific frontend URL
   "https://www.hibafarrash.shourk.com", // www version of your frontend URL
   "https://shourk.com", // root domain
   "https://www.shourk.com", // www version of root domain
