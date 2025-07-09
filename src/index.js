@@ -14,13 +14,28 @@ dotenv.config();
 const PORT = process.env.PORT;
 
 
-const allowedOrigins = "*"; // your frontend dev URL
+const allowedOrigins = [
+  "https://hibafarrash.shourk.com", // your specific frontend URL
+  "https://www.hibafarrash.shourk.com", // www version of your frontend URL
+  "https://shourk.com", // root domain
+  "https://www.shourk.com", // www version of root domain
+  "http://localhost:3000", // Local development URL
+];
+
 app.use(
   cors({
-    origin: allowedOrigins,
-    credentials: true, // allow cookies if using auth
+    origin: (origin, callback) => {
+      // If the origin is in the allowedOrigins array or is not present (e.g., Postman requests)
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true, // Allow cookies if using authentication
   })
 );
+
 
 app.use(express.json());
 app.use(cookieParser());
